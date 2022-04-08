@@ -13,17 +13,13 @@ export class AppComponent {
   public allItems: Item[] = [];
   public className: string = "text-decoration-line-through";
   public n: number = 0;
-  localStorage: any;
+  todostorage: any;
 
-  constructor(localStorage: LocalStorage) {
-
-    if (localStorage) {
-      this.localStorage = localStorage;
-      if (this.localStorage['allItems']) {
-        this.allItems = this.localStorage.get('allItems');
-        this.n = [...this.allItems.filter((el: { done: boolean; }) => el.done == true)].length;
-        console.log(this.n);
-      }
+  constructor(storage: LocalStorage) {
+    this.todostorage = storage;
+    if (this.todostorage.localStorage.allItems) {
+      this.allItems = this.todostorage.get("allItems");
+      this.n = [...this.allItems.filter((el: { done: boolean; }) => el.done == true)].length;
     }
   }
 
@@ -32,26 +28,26 @@ export class AppComponent {
       description: event,
       done: false
     });
-    this.localStorage.set("allItems", this.allItems);
+    this.todostorage.set('allItems', this.allItems);
   }
 
 
   selectCheckBox(event: Item) {
     event.done = !event.done;
     event.done ? this.n++ : this.n--;
-    this.localStorage.set("allItems", this.allItems);
+    this.todostorage.set("allItems", this.allItems);
   }
 
   deleteItem(item: Item) {
     this.allItems = this.allItems.filter(function (el: Item) { return el != item });
     this.n--;
-    this.localStorage.set("allItems", this.allItems);
+    this.todostorage.set("allItems", this.allItems);
   }
 
   deleteAllDoneItem() {
     this.allItems = this.allItems.filter(function (el: { done: boolean; }) { return el.done != true });
     this.n = 0;
-    this.localStorage.set("allItems", this.allItems);
+    this.todostorage.set("allItems", this.allItems);
   }
 
 }
