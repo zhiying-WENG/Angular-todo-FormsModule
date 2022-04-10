@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class LocalStorage {
 
-    public localStorage: any;
+    private localStorage: any;
 
     constructor() {
         if (!localStorage) {

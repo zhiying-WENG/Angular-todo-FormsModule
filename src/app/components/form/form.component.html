@@ -1,4 +1,4 @@
-<form class="form-group mt-4 mb-4" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+<form class="form-group mt-4 mb-3" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
     <div class="input-group">
         <input type="text" class="form-control rounded" name="description" placeholder="add details" ngModel required>
         <button class="btn btn-primary ms-3 rounded" type="submit" [disabled]="myForm.invalid">Add</button>

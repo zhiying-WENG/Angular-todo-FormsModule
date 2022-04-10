@@ -11,9 +11,8 @@ export class AppComponent {
   title = 'Angular-todo-FormsModule';
 
   public allItems: Item[] = [];
-  public className: string = "text-decoration-line-through";
   public n: number = 0;
-  todostorage: any;
+  private todostorage: any;
 
   constructor(storage: LocalStorage) {
     this.todostorage = storage;

@@ -12,8 +12,6 @@ export class TodoListComponent implements OnInit {
   @Output() itemChange = new EventEmitter();
   @Output() itemDelete = new EventEmitter();
 
-  public className: string = "text-decoration-line-through";
-
   constructor() { }
 
   ngOnInit(): void {
