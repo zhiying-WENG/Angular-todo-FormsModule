@@ -7,7 +7,7 @@ import { Item } from 'src/app/item';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-  @Input() item: any;
+  @Input() item!: Item;
   @Input() filter!: String;
   @Output() itemChange = new EventEmitter();
   @Output() itemDelete = new EventEmitter();

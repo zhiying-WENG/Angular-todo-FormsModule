@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(myform: any) {
+  onSubmit(myform: NgForm) {
     this.textForm.emit(myform.value.description);
     myform.reset();
   }
