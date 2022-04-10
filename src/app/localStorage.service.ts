@@ -8,9 +8,9 @@ export class LocalStorage {
     constructor() {
         if (!localStorage) {
             throw new Error('Current browser does not support Local Storage');
-        } else {
-            this.localStorage = localStorage;
         }
+        this.localStorage = localStorage;
+
     }
 
     public set(key: string, value: string): void {
@@ -18,7 +18,7 @@ export class LocalStorage {
     }
 
     public get(key: string): any {
-        return JSON.parse(this.localStorage[key]) || false;
+        return JSON.parse(this.localStorage[key]);
     }
 
     public remove(key: string): any {

@@ -23,7 +23,7 @@ export class AppComponent {
     }
   }
 
-  onSubmitParent(event: any) {
+  onSubmitParent(event: string) {
     this.allItems.push({
       description: event,
       done: false
@@ -31,14 +31,13 @@ export class AppComponent {
     this.todostorage.set('allItems', this.allItems);
   }
 
-
-  selectCheckBox(event: Item) {
-    event.done = !event.done;
-    event.done ? this.n++ : this.n--;
+  selectCheckBoxParent(item: Item) {
+    item.done = !item.done;
+    item.done ? this.n++ : this.n--;
     this.todostorage.set("allItems", this.allItems);
   }
 
-  deleteItem(item: Item) {
+  deleteItemParent(item: Item) {
     this.allItems = this.allItems.filter(function (el: Item) { return el != item });
     this.n--;
     this.todostorage.set("allItems", this.allItems);

@@ -1,59 +1,38 @@
 <div class="col-md-6 offset-md-3 mb-3">
   <h1 class="mt-5 mb-4 text-center">#todo</h1>
   <nav>
-    <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
-      <button class="nav-link active me-5" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button"
+    <div class="nav nav-tabs d-flex flex-nowrap justify-content-evenly" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button"
         role="tab" aria-controls="nav-all" aria-selected="true">All</button>
-      <button class="nav-link mx-5" id="nav-active-tab" data-bs-toggle="tab" data-bs-target="#nav-active" type="button"
+      <button class="nav-link" id="nav-active-tab" data-bs-toggle="tab" data-bs-target="#nav-active" type="button"
         role="tab" aria-controls="nav-active" aria-selected="false">Active</button>
-      <button class="nav-link ms-5" id="nav-completed-tab" data-bs-toggle="tab" data-bs-target="#nav-completed"
-        type="button" role="tab" aria-controls="nav-completed" aria-selected="false">Completed</button>
+      <button class="nav-link" id="nav-completed-tab" data-bs-toggle="tab" data-bs-target="#nav-completed" type="button"
+        role="tab" aria-controls="nav-completed" aria-selected="false">Completed</button>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
     <!-- nav all -->
     <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
       <app-form (textForm)="onSubmitParent($event)"></app-form>
-      <div class="mb-2" *ngFor="let item of allItems" (click)="selectCheckBox(item)">
-        <input *ngIf="item.done" class="me-3" type="checkbox" value="" checked>
-        <label *ngIf="item.done" class=" {{className}}" for="">
-          {{item.description}}
-        </label>
-        <input *ngIf="!item.done" class="me-3" type="checkbox" value="">
-        <label *ngIf="!item.done" class="" for="">
-          {{item.description}}
-        </label>
-      </div>
+      <app-todo-list *ngFor="let item of allItems" [item]="item" filter="all" (itemChange)="selectCheckBoxParent(item)">
+      </app-todo-list>
     </div>
-
     <!-- nav active -->
     <div class="tab-pane fade" id="nav-active" role="tabpanel" aria-labelledby="nav-active-tab">
       <app-form (textForm)="onSubmitParent($event)"></app-form>
-      <div class="mb-2" *ngFor="let item of allItems" (click)="selectCheckBox(item)">
-        <input *ngIf="!item.done" class="me-3" type="checkbox" value="">
-        <label *ngIf="!item.done" class="" for="">
-          {{item.description}}
-        </label>
-      </div>
+      <app-todo-list *ngFor="let item of allItems" [item]="item" filter="active"
+        (itemChange)="selectCheckBoxParent(item)">
+      </app-todo-list>
     </div>
-
     <!-- nav Completed -->
     <div class="tab-pane fade" id="nav-completed" role="tabpanel" aria-labelledby="nav-completed-tab">
-      <div class="d-flex align-items-center justify-content-between mt-2" *ngFor="let item of allItems"
-        (click)="selectCheckBox(item)">
-        <div>
-          <input *ngIf="item.done" class="me-3" type="checkbox" value="" checked>
-          <label *ngIf="item.done" class="me-5 {{className}}" for="">
-            {{item.description}}
-          </label>
-        </div>
-        <span *ngIf="item.done" (click)="deleteItem(item)" type="button" value="Delete"
-          class="material-icons">delete_outline</span>
-      </div>
+      <app-todo-list *ngFor="let item of allItems" [item]="item" filter="completed"
+        (itemChange)="selectCheckBoxParent(item)" (itemDelete)="deleteItemParent(item)"
+        class="d-flex align-items-center justify-content-between">
+      </app-todo-list>
       <button *ngIf="n>0" (click)="deleteAllDoneItem()" type="button" value="Delete" class="btn btn-danger mt-3 d-flex 
         align-items-center ms-auto">
         <span class="material-icons">delete_outline</span>Delete all
       </button>
     </div>
-
   </div>
