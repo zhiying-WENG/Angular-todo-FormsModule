@@ -16,6 +16,6 @@ export class FormComponent implements OnInit {
 
   onSubmit(myform: any) {
     this.textForm.emit(myform.value.description);
-    // console.log(myform.value.description);
+    myform.reset();
   }
 }
