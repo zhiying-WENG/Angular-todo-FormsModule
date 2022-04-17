@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Item } from './item';
 
 @Injectable()
 export class LocalStorage {
@@ -13,12 +14,12 @@ export class LocalStorage {
 
     }
 
-    public set(key: string, value: string): void {
+    public set(key: string, value: Item[]): void {
         this.localStorage[key] = JSON.stringify(value);
     }
 
     public get(key: string): any {
-        return JSON.parse(this.localStorage[key]);
+        return this.localStorage[key] ? JSON.parse(this.localStorage[key]) : false;
     }
 
     public remove(key: string): any {
