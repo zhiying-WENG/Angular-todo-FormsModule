@@ -12,15 +12,8 @@ export class AppComponent implements OnInit {
 
   public allItems: Item[] = [];
   public n: number = 0;
-  // private todostorage: any;
 
-  constructor(private storage: LocalStorage) {
-    // this.todostorage = this.storage;
-    // if (this.todostorage.localStorage.allItems) {
-    //   this.allItems = this.todostorage.get("allItems");
-    //   this.n = [...this.allItems.filter((el: { done: boolean; }) => el.done == true)].length;
-    // }
-  }
+  constructor(private storage: LocalStorage) { }
 
   ngOnInit(): void {
     if (this.storage.get("allItems")) {
